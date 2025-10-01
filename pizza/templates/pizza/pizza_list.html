@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pizza's!</title>
+</head>
+
+<body>
+    <h1>Pizza list</h1>
+    {% for pizza in object_list %}
+    <h2>{{ pizza.title }}</h2>
+    <p>{{ pizza.slug }}</p>
+    <p>Created by: {{ pizza.user_id }} on {{pizza.created_on}}</p>
+    {% endfor %}
+</body>
+
+</html>
