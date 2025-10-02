@@ -11,4 +11,4 @@ from .models import Pizza
 
 class PizzaList(generic.ListView):
     queryset = Pizza.objects.all()
-    template_name = "pizza/pizza-list.html"
+    template_name = "pizza/index.html"

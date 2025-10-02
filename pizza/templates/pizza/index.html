@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+    <h1>Pizza list</h1>
+    {% for pizza in object_list %}
+    <h2>{{ pizza.title }}</h2>
+    <p>{{ pizza.slug }}</p>
+    <p>Created by: {{ pizza.user_id }} on {{pizza.created_on}}</p>
+    {% endfor %}
+
+{% endblock %}

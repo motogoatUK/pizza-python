@@ -1,0 +1,47 @@
+{% url 'home' as home_url %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>PizzaPython</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- Google Fonts CSS -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Almendra&family=Courgette&family=Shanti&display=swap"
+        rel="stylesheet">
+
+    <!-- Font Awesome CSS -->
+    <script src="https://kit.fontawesome.com/dfd0bfb19f.js" crossorigin="anonymous"></script>
+
+    <!-- Bootstrap CSS -->
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div>
+            <a href="{% url 'home' %}">PizzaPython</a>
+        </div>
+    </nav>
+    <!-- Main Content-->
+    <main>
+        {% block content %}
+        <!-- main content shown here -->
+        {% endblock content %}
+    </main>
+    <!-- Footer -->
+    <footer>
+        <p>&copy;2025 S.D.Thornes</p>
+        <p>Follow us:
+            <i class="fa-brands fa-facebook"></i>            
+            <i class="fa-brands fa-instagram"></i>
+            <i class="fa-brands fa-twitter"></i>
+            <i class="fa-brands fa-tiktok"></i>
+        </p>
+    </footer>
+</body>
+
+</html>
