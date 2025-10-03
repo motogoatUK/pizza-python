@@ -3,10 +3,17 @@
 {% block content %}
 
     <h1>Pizza list</h1>
-    {% for pizza in object_list %}
-    <h2>{{ pizza.title }}</h2>
-    <p>{{ pizza.slug }}</p>
-    <p>Created by: {{ pizza.user_id }} on {{pizza.created_on}}</p>
-    {% endfor %}
+    <div class="row">
+        <div class="col">
+        <!-- Show all the pizzas in card format -->
+            {% for pizza in object_list %}
+            <div class="card p-2">
+                <h2>{{ pizza.title }}</h2>
+                <p>{{ pizza.slug }}</p>
+                <p>Created by: {{ pizza.user_id }} on {{pizza.created_on}}</p>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
 
 {% endblock %}

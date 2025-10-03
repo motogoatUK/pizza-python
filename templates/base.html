@@ -1,3 +1,5 @@
+{% load static%}
+
 {% url 'home' as home_url %}
 
 <!DOCTYPE html>
@@ -6,7 +8,7 @@
 <head>
     <title>PizzaPython</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-
+    <meta charset="utf-8">
     <!-- Google Fonts CSS -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -17,31 +19,39 @@
     <script src="https://kit.fontawesome.com/dfd0bfb19f.js" crossorigin="anonymous"></script>
 
     <!-- Bootstrap CSS -->
+     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
 
 <body>
-    <!-- Navigation -->
-    <nav>
-        <div>
-            <a href="{% url 'home' %}">PizzaPython</a>
-        </div>
-    </nav>
-    <!-- Main Content-->
-    <main>
-        {% block content %}
-        <!-- main content shown here -->
-        {% endblock content %}
-    </main>
-    <!-- Footer -->
-    <footer>
-        <p>&copy;2025 S.D.Thornes</p>
-        <p>Follow us:
-            <i class="fa-brands fa-facebook"></i>            
-            <i class="fa-brands fa-instagram"></i>
-            <i class="fa-brands fa-twitter"></i>
-            <i class="fa-brands fa-tiktok"></i>
-        </p>
-    </footer>
+    <div class="container">
+        <!-- Navigation -->
+        <nav>
+            <div>
+                <a href="{% url 'home' %}">PizzaPython</a>
+            </div>
+        </nav>
+        <!-- Main Content-->
+        <main>
+            {% block content %}
+            <!-- main content shown here -->
+            {% endblock content %}
+        </main>
+        <!-- Footer -->
+        <footer class="footer mt-auto bg-dark">            
+            <p class="text-center">Follow us:
+                <i class="fa-brands fa-facebook"></i>            
+                <i class="fa-brands fa-instagram"></i>
+                <i class="fa-brands fa-twitter"></i>
+                <i class="fa-brands fa-tiktok"></i>
+            </p>
+            <p class="text-center">&copy;2025 S.D.Thornes</p>
+        </footer>
+    </div>
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
 </body>
 
 </html>
