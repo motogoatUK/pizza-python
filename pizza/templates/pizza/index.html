@@ -9,7 +9,11 @@
             {% for pizza in object_list %}
             <div class="card p-2">
                 <h2>{{ pizza.title }}</h2>
-                <p>{{ pizza.slug }}</p>
+                <p>{{ pizza.base_id.name }}</p>
+                <p> {% for topping in pizza.topping_id.all %}
+                    + {{topping.name}} 
+                    {% endfor %}                   
+                </p>
                 <p>Created by: {{ pizza.user_id }} on {{pizza.created_on}}</p>
             </div>
             {% endfor %}
