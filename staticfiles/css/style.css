@@ -1,0 +1,42 @@
+/* Colours from colormind.io */
+/* Google Fonts via Fontjoy.com */
+:root {
+    --primary:#a61b0b;
+    --light-accent:#77a60b;
+    --dark-accent: #0b39a6;
+    --light-shade:#ede3dd;
+    --dark-shade: #1a1419;
+    --heading-font: "Almendra", serif;
+    --title-font:"Courgette", cursive;
+    --copy-font:"Shanti", serif;
+}
+
+/* reset CSS margins */
+* {
+    margin:0;
+    padding:0;
+}
+body {
+    background-color: var(--light-shade);
+    color:var(--dark-shade);
+    font-family: var(--copy-font);
+    font-weight: 400;
+    font-style: normal;
+}
+h1 {
+    font-family: var(--heading-font);
+}
+h2 {
+    font-family: var(--title-font);
+}
+footer i {
+    padding: 0 3px;
+}
+/* -- Ids -- */
+
+/* -- classes -- */
+.bg-dark {
+    /* reverses text and background colours f*/
+    background-color: var(--dark-shade);
+    color:var(--light-shade);
+}
