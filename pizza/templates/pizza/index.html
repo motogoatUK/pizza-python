@@ -2,22 +2,43 @@
 
 {% block content %}
 
-    <h1>Pizza list</h1>
-    <div class="row">
-        <div class="col">
+<h1>Pizza list</h1>
+<div class="row">
+    <div class="col">
         <!-- Show all the pizzas in card format -->
-            {% for pizza in object_list %}
-            <div class="card p-2">
-                <h2>{{ pizza.title }}</h2>
-                <p>{{ pizza.base_id.name }}</p>
-                <p> {% for topping in pizza.topping_id.all %}
-                    + {{topping.name}} 
-                    {% endfor %}                   
-                </p>
-                <p>Created by: {{ pizza.user_id }} on {{pizza.created_on}}</p>
-            </div>
-            {% endfor %}
+        {% for pizza in object_list %}
+        <div class="card p-2">
+            <h2>{{ pizza.title }}</h2>
+            <p>{{ pizza.base_id.name }}
+                <br>
+                <span class="ingredients w-auto">
+                    <span class="px-2">
+                        {% if not pizza.cheese %}
+                        <i class="fa-solid fa-xmark red"></i>
+                        {% else %}
+                        <i class="fa-solid fa-check green"></i>
+                        {% endif %}
+                        Cheese
+                    </span>
+                    <span class="px-2">
+                        {% if not pizza.tom_sauce %}
+                        <i class="fa-solid fa-xmark red"></i>
+                        {% else %}
+                        <i class="fa-solid fa-check green"></i>
+                        {% endif %}
+                        Sauce
+                    </span>
+                </span>
+            </p>
+            <br>
+            <p> {% for topping in pizza.topping_id.all %}
+                <i class="fa-solid fa-plus"></i> {{topping.name}}
+                {% endfor %}
+            </p>
+            <p>Created by: {{ pizza.user_id }} on {{pizza.created_on}}</p>
         </div>
+        {% endfor %}
     </div>
+</div>
 
 {% endblock %}

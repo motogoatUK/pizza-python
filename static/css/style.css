@@ -25,6 +25,7 @@ body {
 }
 h1 {
     font-family: var(--heading-font);
+    color: var(--primary);
 }
 h2 {
     font-family: var(--title-font);
@@ -39,4 +40,15 @@ footer i {
     /* reverses text and background colours f*/
     background-color: var(--dark-shade);
     color:var(--light-shade);
+}
+.ingredients span {
+    border: grey solid 1px;
+    border-radius: 4px;
+    font-size: smaller;
+}
+.red {
+    color: var(--primary);
+}
+.green {
+    color:var(--light-accent);
 }
