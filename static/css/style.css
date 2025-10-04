@@ -52,3 +52,15 @@ footer i {
 .green {
     color:var(--light-accent);
 }
+.card-image {
+    position: relative;
+}
+
+.card-image-title {
+    position: absolute;
+    top: -5px;
+    left:-5px;
+    background-color: var(--light-accent);
+    color: white;
+    padding:0 5px;
+}
