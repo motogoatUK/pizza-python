@@ -4,7 +4,7 @@
 
 <div id="main-header" class="container p-0">
     <div class="row g-0 h-25">
-        <div class="text-center col-md-6">
+        <div class="text-center col">
             <h1>PizzaPython</h1>
             <img class="img-fluid" src="{% static 'images/pizza-python-header.webp' %}"
                 alt="A python curled around and about to eat a pizza">
@@ -31,15 +31,19 @@
             {% for pizza in object_list %}
             <div class="card p-2">
                 <div class="card-image">
+                    {% if "placeholder" in pizza.featured_image.url %}
                     <img class="img-fluid" src="{% static 'images/default.jpg' %}" alt="default image of a pizza">
+                    {% else %}
+                    <img class="img-fluid" src="{{ pizza.featured_image.url }}" alt="{{ pizza.title }}">
+                    {% endif %}
                     <div class="card-image-title">
                         <h2>{{ pizza.title }}</h2>
-                        
+
                     </div>
                     <div class="card-image-text">
                         <p>A classic {{ pizza.base_id.name }} pizza base
-                        {% for topping in pizza.topping_id.all %}, with
-                        {{topping.name}} {% endfor %}.
+                            {% for topping in pizza.topping_id.all %}, with
+                            {{topping.name}} {% endfor %}.
                         </p>
                     </div>
                 </div>

@@ -1,6 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
-
+from cloudinary.models import CloudinaryField
 
 class Pizza(models.Model):
     """
@@ -26,6 +26,7 @@ class Pizza(models.Model):
         null=False,
         blank=False
     )
+    featured_image = CloudinaryField('image', default='placeholder')
     # Toppings are optional. Many Pizzas can have many Toppings
     topping_id = models.ManyToManyField(
         'Topping',
