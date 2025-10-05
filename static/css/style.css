@@ -83,6 +83,14 @@ footer i {
     color: white;
     padding:0 5px;
 }
+.card-image-text {
+    position: absolute;
+    margin-left:33%;
+    bottom:12px;
+    right:-5px;
+    background-color: rgba(255,255,255,.75);
+    padding:0 5px;
+}
 /* Media Queries */
 @media screen and (min-width: 768px) {
     #navbar { display: block;}  /*show navbar at top of screen */

@@ -11,13 +11,15 @@
         </div>
     </div>
     <nav id="nav-small">
-            <div class="text-center">
-                <p><button type="button" class="btn btn-primary">About Us</button>
-                </p><p>
+        <div class="text-center">
+            <p>
+                <button type="button" class="btn btn-primary">About Us</button>
+            </p>
+            <p>
                 <button type="button" class="btn btn-primary">Register/Login</button>
-                </p>
-            </div>
-        </nav>
+            </p>
+        </div>
+    </nav>
 </div>
 
 {% block pizza_block %}
@@ -32,10 +34,13 @@
                     <img class="img-fluid" src="{% static 'images/default.jpg' %}" alt="default image of a pizza">
                     <div class="card-image-title">
                         <h2>{{ pizza.title }}</h2>
-                        <p>A {{ pizza.base_id.name }} pizza base, topped with
-                            {% for topping in pizza.topping_id.all %}
-                     {{topping.name}},
-                    {% endfor %} .</p>
+                        
+                    </div>
+                    <div class="card-image-text">
+                        <p>A classic {{ pizza.base_id.name }} pizza base
+                        {% for topping in pizza.topping_id.all %}, with
+                        {{topping.name}} {% endfor %}.
+                        </p>
                     </div>
                 </div>
                 <p>{{ pizza.base_id.name }}
