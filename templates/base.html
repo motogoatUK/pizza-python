@@ -38,32 +38,29 @@
         <!-- Navigation Bar shown on wider screens -->
         <nav id="navbar">
             <ul class="nav">
-                <a class="" href="{% url 'home' %}">
+                <a href="{% url 'home' %}">
                     <img src="{% static 'images/pizza-python-logo.webp' %}" alt="PP logo">
                 </a>
-                <li class="navitem">
-                    <a class="nav-link {% if request.path == home_url %}active{% endif %}" aria-current="page"
+                <li class="nav-item">
+                    <a class="nav-link {% if request.path == home_url %}active " aria-current="page{% endif %}"
                         href="{% url 'home' %}">PizzaPython
                     </a>
                 </li>
-                <li class="navitem">
-                    <a class="nav-link">Register/Login</a><a href="#"></a>
-                </li>
                 {% if user.is_authenticated %}
                 <li class="nav-item">
-                    <a class="nav-link {% if request.path == logout_url %}active{% endif %}" aria-current="page"
+                    <a class="nav-link {% if request.path == logout_url %}active" aria-current="page{% endif %}"
                         href="{% url 'logout' %}">Logout</a>
                 </li>
                 {% else %}
  
                 <li class="nav-item">
-                    <a class="nav-link {% if request.path == login_url %}active{% endif %}" aria-current="page"
-                        href="{% url 'login' %}">Login</a>
+                    <a class="nav-link {% if request.path == login_url %}active" aria-current="page{% endif %}"
+                        href="{% url 'login' %}">Login / Register</a>
                 </li>
                 {% endif %}
-            </ul>
+            </ul>  
         </nav>
-        <hr>
+
         <!-- Main Content-->
         <main>
             {% block content %}
