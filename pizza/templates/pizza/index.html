@@ -2,6 +2,25 @@
 {% load static %}
 {% block content %}
 
+<div id="main-header" class="container p-0">
+    <div class="row g-0 h-25">
+        <div class="text-center col-md-6">
+            <h1>PizzaPython</h1>
+            <img class="img-fluid" src="{% static 'images/pizza-python-header.webp' %}"
+                alt="A python curled around and about to eat a pizza">
+        </div>
+    </div>
+    <nav id="nav-small">
+            <div class="text-center">
+                <p><button type="button" class="btn btn-primary">About Us</button>
+                </p><p>
+                <button type="button" class="btn btn-primary">Register/Login</button>
+                </p>
+            </div>
+        </nav>
+</div>
+
+{% block pizza_block %}
 <section id="pizza-list">
     <h1>Pizza list</h1>
     <div class="row">
@@ -9,11 +28,14 @@
             <!-- Show all the pizzas in card format -->
             {% for pizza in object_list %}
             <div class="card p-2">
-
                 <div class="card-image">
-                    <img src = "{% static 'images/default.jpg' %}" alt="default image of a pizza">
+                    <img class="img-fluid" src="{% static 'images/default.jpg' %}" alt="default image of a pizza">
                     <div class="card-image-title">
                         <h2>{{ pizza.title }}</h2>
+                        <p>A {{ pizza.base_id.name }} pizza base, topped with
+                            {% for topping in pizza.topping_id.all %}
+                     {{topping.name}},
+                    {% endfor %} .</p>
                     </div>
                 </div>
                 <p>{{ pizza.base_id.name }}
@@ -48,5 +70,7 @@
         </div>
     </div>
 </section>
-
+<!-- end pizza_block -->
+{% endblock %}
+<!-- end content -->
 {% endblock %}

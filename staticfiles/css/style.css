@@ -30,10 +30,29 @@ h1 {
 h2 {
     font-family: var(--title-font);
 }
+
+/* -- Ids -- */
+/* navbar hidden by default. shown on larger screens via media queries */
+#navbar {
+    display: none;
+}
+#nav-small {
+    display:block
+}
+#main-header {
+    margin-top: 10px;
+    position: relative;
+    display: inline-block;
+}
+#main-header h1 {
+    font-size:4em;
+    font-weight:bold;
+    text-shadow: var(--light-accent) 2px 2px 4px;
+    position: relative;
+}
 footer i {
     padding: 0 3px;
 }
-/* -- Ids -- */
 
 /* -- classes -- */
 .bg-dark {
@@ -51,4 +70,26 @@ footer i {
 }
 .green {
     color:var(--light-accent);
+}
+.card-image {
+    position: relative;
+}
+
+.card-image-title {
+    position: absolute;
+    top: -5px;
+    left:-5px;
+    background-color: var(--light-accent);
+    color: white;
+    padding:0 5px;
+}
+/* Media Queries */
+@media screen and (min-width: 768px) {
+    #navbar { display: block;}  /*show navbar at top of screen */
+    #nav-small { display: none;} /*Hide mobile nav area*/
+    #main-header h1 {
+        font-size:7em;
+        position:absolute;
+        right:0;
+    }
 }
