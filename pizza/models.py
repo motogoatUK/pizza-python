@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from cloudinary.models import CloudinaryField
 
+
 class Pizza(models.Model):
     """
     A single instance of Pizza related to base, topping(s) and user_id.
