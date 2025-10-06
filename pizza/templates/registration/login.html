@@ -1,23 +1,25 @@
 <!-- templates/registration/login.html -->
 {% extends "base.html" %}
+{% load crispy_forms_tags %}
 
 {% block title %}Login{% endblock %}
 
 
 {% block content %}
+
+<!--Mobile nav goes here-->
+{% include 'nav-small.html' %}
+
 <div class="container mb-2">
 
     {% if user.is_authenticated %}
     Alright, {{ user.username }}! You are already logged in!
 
-    <!--Mobile nav goes here-->
-    {% include 'nav-small.html' %}
-
     {%else%}
     <h2>Log In</h2>
     <form method="post">
         {% csrf_token %}
-        {{ form }}
+        {{ form | crispy }}
         <button class="btn btn-primary" type="submit">Log In</button>
     </form>
     {%endif%}
