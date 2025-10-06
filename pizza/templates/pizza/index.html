@@ -19,13 +19,13 @@
             <p>{% if user.is_authenticated %}
                 <a href="{% url 'logout' %}">
                     <button type="button" class="btn btn-primary">
-                    Logout
+                        Logout
                     </button>
                 </a>
                 {% else %}
                 <a href="{% url 'login' %}">
                     <button type="button" class="btn btn-primary">
-                    Login / Register
+                        Login / Register
                     </button>
                 </a>
                 {% endif %}
@@ -35,12 +35,12 @@
 </div>
 
 {% block pizza_block %}
-<section id="pizza-list">
+<section class="container" id="pizza-list">
     <h1>Pizza list</h1>
     <div class="row">
-        <div class="col">
-            <!-- Show all the pizzas in card format -->
-            {% for pizza in object_list %}
+        <!-- Show all the pizzas in card format -->
+        {% for pizza in object_list %}
+        <div class="col-md-6 mb-4">
             <div class="card p-2">
                 <div class="card-image">
                     {% if "placeholder" in pizza.featured_image.url %}
@@ -92,8 +92,9 @@
                     {% endif %}
                 </p>
             </div>
-            {% endfor %}
         </div>
+        {% endfor %}
+    </div>
     </div>
 </section>
 <!-- end pizza_block -->
