@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content%}
+{% include "nav-small.html" %}
+<div class="container">
+    <h1>Pizza list</h1>
+    <div class="row">
+        <div class="col card mb-4 mt-3">
+            <div class="card-body">
+                <!-- The pizza content goes inside the card-text. -->
+                <p class="card-text">
+                    {% for pizza in object_list %}
+                <h2>{{pizza.title}}</h2>
+                <p class="subtitle">Made by {{ pizza.user_id }}
+                    <br>Created on {{ pizza.created_on }}
+                    {% if upadted_on %}
+                    <br>Modified on {{ pizza.updated_on }}
+                    {% endif %}
+                </p>
+                <p>{{ pizza.base_id.name }}
+                    <br>
+                    <span class="px-2">
+                        {% if not pizza.cheese %}
+                        <i class="fa-solid fa-xmark red"></i>
+                        {% else %}
+                        <i class="fa-solid fa-check green"></i>
+                        {% endif %}
+                        Cheese
+                    </span>
+                    <span class="px-2">
+                        {% if not pizza.tom_sauce %}
+                        <i class="fa-solid fa-xmark red"></i>
+                        {% else %}
+                        <i class="fa-solid fa-check green"></i>
+                        {% endif %}
+                        Sauce
+                    </span>
+                    <br>
+                    {% for topping in pizza.topping_id.all %}
+                    <i class="fa-solid fa-plus"></i> {{topping.name}}
+                    {% endfor %}
+                </p>
+                {% if user.is_authenticated %}<a href="{% url 'pizza_order' pizza.slug %}">Edit this pizza</a>
+                {% else %}
+                <a href="{% url 'login' %}">Login/Register to edit this Pizza</a>
+                {% endif %}
+                <hr>
+                {% endfor %}
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

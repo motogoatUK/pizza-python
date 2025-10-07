@@ -71,7 +71,7 @@
                 </p>
                 <p>Created by: {{ pizza.user_id }} on {{pizza.created_on}}
                     <br>
-                    {% if user.is_authenticated %}<a href="#">Make your own Pizzas</a>
+                    {% if user.is_authenticated %}<a href="{% url 'all-pizzas' %}">Make your own Pizzas</a>
                     {% else %}
                     <a href="{% url 'login' %}">Login/Register to make your own Pizza</a>
                     {% endif %}
