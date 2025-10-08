@@ -56,9 +56,9 @@ def new_pizza(request):
         )
 
 
-def pizza_order(request, slug):
+def edit_pizza(request, slug):
     """
-    Display detail of :model:`Pizza`+`Base`+`Toppings`.
+    View detail of :model:`Pizza`+`Base`+`Toppings`.
     Handles POST data to save in DB
 
     **Context**
@@ -68,7 +68,7 @@ def pizza_order(request, slug):
         A form to update any fields.
 
     **Template:**
-    :template:`pizza/pizza-order.html`
+    :template:`pizza/edit-pizza.html`
     """
     queryset = Pizza.objects.all()
     order = get_object_or_404(queryset, slug=slug)
@@ -79,6 +79,8 @@ def pizza_order(request, slug):
         if order_form.is_valid():
             new_order = order_form.save(commit=False)
             new_order.user_id = request.user
+            # Reset slug in case of title change
+            new_order.slug = slugify(new_order.title)
             new_order.save()
             order_form.save_m2m()  # Required to save Toppings
             return HttpResponseRedirect(
@@ -88,7 +90,7 @@ def pizza_order(request, slug):
 
     return render(
         request,
-        "pizza/pizza-order.html",
+        "pizza/edit-pizza.html",
         {
             "pizza": order,
             "order_form": order_form,

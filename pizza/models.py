@@ -16,8 +16,7 @@ class Pizza(models.Model):
     tom_sauce = models.BooleanField(default=True, verbose_name="tomato sauce")
     user_id = models.ForeignKey(
         User,
-        on_delete=models.CASCADE,
-        related_name="pizza_orders"
+        on_delete=models.CASCADE
     )
     # A Pizza must have one, and only one, base
     base_id = models.ForeignKey(

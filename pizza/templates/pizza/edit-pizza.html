@@ -33,32 +33,32 @@
             <div class="card-body">
                 <!-- The pizza content goes inside the card-text. -->
                 <p class="card-text">
-                    <p>{{ pizza.base_id.name }}
-                        <br>
-                        <span class="ingredients w-auto">
-                            <span class="px-2">
-                                {% if not pizza.cheese %}
-                                <i class="fa-solid fa-xmark red"></i>
-                                {% else %}
-                                <i class="fa-solid fa-check green"></i>
-                                {% endif %}
-                                Cheese
-                            </span>
-                            <span class="px-2">
-                                {% if not pizza.tom_sauce %}
-                                <i class="fa-solid fa-xmark red"></i>
-                                {% else %}
-                                <i class="fa-solid fa-check green"></i>
-                                {% endif %}
-                                Sauce
-                            </span>
-                        </span>
-                    </p>
+                <p>{{ pizza.base_id.name }}
                     <br>
-                    <p> {% for topping in pizza.topping_id.all %}
-                        <i class="fa-solid fa-plus"></i> {{topping.name}}
-                        {% endfor %}
-                    </p>
+                    <span class="ingredients w-auto">
+                        <span class="px-2">
+                            {% if not pizza.cheese %}
+                            <i class="fa-solid fa-xmark red"></i>
+                            {% else %}
+                            <i class="fa-solid fa-check green"></i>
+                            {% endif %}
+                            Cheese
+                        </span>
+                        <span class="px-2">
+                            {% if not pizza.tom_sauce %}
+                            <i class="fa-solid fa-xmark red"></i>
+                            {% else %}
+                            <i class="fa-solid fa-check green"></i>
+                            {% endif %}
+                            Sauce
+                        </span>
+                    </span>
+                </p>
+                <br>
+                <p> {% for topping in pizza.topping_id.all %}
+                    <i class="fa-solid fa-plus"></i> {{topping.name}}
+                    {% endfor %}
+                </p>
                 </p>
             </div>
             <div class="card-body">
@@ -69,6 +69,9 @@
                     {{ order_form | crispy }}
                     {% csrf_token %}
                     <button id="submitButton" type="submit" class="btn btn-primary">Save Changes</button>
+                    <a href="{% url 'all_pizzas' %}">
+                        <button type="button" class="btn btn-secondary">Go back</button>
+                    </a>
                 </form>
                 {% else %}
                 <p>Log in to edit this pizza</p>
@@ -76,5 +79,4 @@
             </div>
         </div>
     </div>
-
     {% endblock %}

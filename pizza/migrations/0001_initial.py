@@ -24,7 +24,7 @@ class Migration(migrations.Migration):
                 ('tom_sauce', models.BooleanField(default=True, verbose_name='tomato sauce')),
                 ('created_on', models.DateTimeField(auto_now_add=True)),
                 ('updated_on', models.DateTimeField(auto_now=True)),
-                ('user_id', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='pizza_orders', to=settings.AUTH_USER_MODEL)),
+                ('user_id', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL)),
             ],
         ),
     ]
