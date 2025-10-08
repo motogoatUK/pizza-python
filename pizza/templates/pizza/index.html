@@ -12,16 +12,16 @@
         </div>
     </div>
     {%include 'nav-small.html' %}
-    
+
 </div>
 
 {% block pizza_block %}
-<section class="container" id="pizza-list">
+<section class="container pt-5 pb-5 shadow-sm" id="pizza-list">
     <h1>Pizza list</h1>
     <div class="row">
         <!-- Show all the pizzas in card format -->
         {% for pizza in object_list %}
-        <div class="col-md-6 mb-4">
+        <div class="col-md-6 mb-4 d-flex align-items-stretch">
             <div class="card p-2">
                 <div class="card-image">
                     {% if "placeholder" in pizza.featured_image.url %}
@@ -34,11 +34,11 @@
                     </div>
                     <div class="card-image-text">
                         <p>A classic {{ pizza.base_id.name }} pizza base
-                            {% if pizza.topping_id.all %} topped with 
-                               {% for topping in pizza.topping_id.all %}
-                                 {{topping.name}}
-                                 {% if not forloop.last %}, {% endif %}
-                               {% endfor %}
+                            {% if pizza.topping_id.all %} topped with
+                            {% for topping in pizza.topping_id.all %}
+                            {{topping.name}}
+                            {% if not forloop.last %}, {% endif %}
+                            {% endfor %}
                             {% endif %}
                         </p>
                     </div>
@@ -70,11 +70,24 @@
                     {% endfor %}
                 </p>
                 <p>Created by: {{ pizza.user_id }} on {{pizza.created_on}}
-                    <br>
-                    {% if user.is_authenticated %}<a href="{% url 'all_pizzas' %}">Make your own Pizzas</a>
-                    {% else %}
-                    <a href="{% url 'login' %}">Login/Register to make your own Pizza</a>
-                    {% endif %}
+                </p>
+                {% if user.is_authenticated %}
+                <div class="row">
+                    <div class="col-6">
+                        <a href="#">
+                            <button type="button" class="btn btn-primary">
+                                Order this Pizza</button></a>
+                    </div>
+                    <div class="col-6">
+                        <a href="{% url 'all_pizzas' %}">
+                            <button type="button" class="btn btn-primary">
+                                Edit a pizza</button>
+                        </a>
+                    </div>
+                </div>
+                {% else %}
+                <a href="{% url 'login' %}">Login/Register to make your own Pizza</a>
+                {% endif %}
                 </p>
             </div>
         </div>

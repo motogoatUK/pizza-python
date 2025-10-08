@@ -1,7 +1,7 @@
-<nav id="nav-small">
+<nav id="nav-small" class="sticky-top bg-dark">
     <hr>
     <div class="container text-center mt-3">
-        <div class="row px-2 mb-2" >
+        <div class="row px-2 mb-2">
             <a class="col-6" href="{% url 'home' %}">
                 <button type="button" class="btn btn-primary">
                     Home
@@ -9,23 +9,26 @@
             <a class="col-6" href="#">
                 <button type="button" class="btn btn-primary">About Us
                 </button></a>
-            </div>
+        </div>
         <div class="row px-2">{% if user.is_authenticated %}
-            <a class="col-12" href="{% url 'logout' %}">
-                <button type="button" class="btn btn-primary">
-                    Logout
-                </button></a>
+            <div class="" col-12>
+                Logged in as: {{user}}<br>
+                <a class="col-12" href="{% url 'logout' %}">
+                    <button type="button" class="btn btn-primary">
+                        Logout
+                    </button></a>
+            </div>
             {% else %}
-            <a  class="col-6" href="{% url 'login' %}">
+            <a class="col-6" href="{% url 'login' %}">
                 <button type="button" class="btn btn-primary">
                     Login
                 </button></a>
-            <a  class="col-6" href="{% url 'signup' %}">
+            <a class="col-6" href="{% url 'signup' %}">
                 <button type="button" class="btn btn-primary">
                     Register
                 </button></a>
             {% endif %}
-            </div>
+        </div>
     </div>
     <hr>
 </nav>

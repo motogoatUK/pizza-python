@@ -71,10 +71,19 @@ footer i {
     border:var(--primary) solid 2px;
     border-radius:3px
 }
+.my-pizza {
+    border:var(--dark-shade) solid 2px;
+    border-radius:3px
+}
 .bg-dark {
-    /* reverses text and background colours f*/
+    /* reverses text and background colours */
     background-color: var(--dark-shade);
     color:var(--light-shade);
+}
+.bg-light {
+    /* reverses text and background colours */
+    background-color: var(--light-shade);
+    color:var(--dark-shade);
 }
 .ingredients span {
     border: grey solid 1px;
@@ -90,7 +99,6 @@ footer i {
 .card-image {
     position: relative;
 }
-
 .card-image-title {
     position: absolute;
     top: -5px;
@@ -108,6 +116,13 @@ footer i {
     padding:0 5px;
 }
 /* Media Queries */
+@media screen and (max-width: 451px) {
+.card-image-text { 
+    max-height: 140px;  /*Limit size of description box */
+    overflow: scroll;   /*on smallest screens*/
+}  
+
+}
 @media screen and (min-width: 768px) {
     #navbar { display: block;}  /*show navbar at top of screen */
     #nav-small { display: none;} /*Hide mobile nav area*/

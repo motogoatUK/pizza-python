@@ -17,7 +17,7 @@ class PizzaList(generic.ListView):
 
 
 class MyPizzas(generic.ListView):
-    queryset = Pizza.objects.all()
+    queryset = Pizza.objects.all().order_by('user_id')
     template_name = "pizza/all-pizzas.html"
 
 
@@ -81,6 +81,8 @@ def pizza_order(request, slug):
             new_order.user_id = request.user
             new_order.save()
             order_form.save_m2m()  # Required to save Toppings
+            return HttpResponseRedirect(
+                reverse('all_pizzas')+'#'+new_order.slug)
         else:
             print("invalid form")
 
@@ -92,3 +94,19 @@ def pizza_order(request, slug):
             "order_form": order_form,
         }
     )
+
+
+def delete_pizza(request, slug):
+    """
+    function to delete a pizza
+    """
+    queryset = Pizza.objects.all()
+    doomed_pizza = get_object_or_404(queryset, slug=slug)
+    # Check the user is the creator of the Pizza
+    if doomed_pizza.user_id == request.user:
+        doomed_pizza.delete()
+        print('Pizza deleted!')
+    else:
+        print('You can only delete your own pizzas!')
+
+    return HttpResponseRedirect(reverse('all_pizzas',))

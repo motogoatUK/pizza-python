@@ -4,14 +4,18 @@
 {% load crispy_forms_tags %}
 
 {% block content%}
+<h1 class="text-center">PizzaPython</h1>
 {% include "nav-small.html" %}
-<div class="card-body">
+<div class="card-body mb-4">
     {% if user.is_authenticated %}
-    <h3>Add a Pizza, {{ user.username }}</h3>
+    <h3>Add a new Pizza, {{ user.username }}</h3>
     <form id="orderForm" method="post">
         {{ order_form | crispy }}
         {% csrf_token %}
         <button id="submitButton" type="submit" class="btn btn-primary">Add Pizza</button>
+        <a href="{% url 'all_pizzas' %}">
+            <button type="button" class="btn btn-secondary">Go back</button>
+        </a>
     </form>
     {% else %}
     <p>You need to be Logged in to add a pizza</p>
