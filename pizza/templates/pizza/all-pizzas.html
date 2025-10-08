@@ -11,16 +11,17 @@
                 <!-- The pizza content goes inside the card-text. -->
                 <p class="card-text">
                     {% for pizza in object_list %}
-                <h2>{{pizza.title}}</h2>
+                <h2 id="{{pizza.slug}}">{{pizza.title}}</h2>
                 <p class="subtitle">Made by {{ pizza.user_id }}
                     <br>Created on {{ pizza.created_on }}
-                    {% if upadted_on %}
+                    <!-- Show modified date if it is different to created date -->
+                    {% if not pizza.updated_on == pizza.created_on %}
                     <br>Modified on {{ pizza.updated_on }}
                     {% endif %}
                 </p>
                 <p>{{ pizza.base_id.name }}
                     <br>
-                    <span class="px-2">
+                    <span class="px-0">
                         {% if not pizza.cheese %}
                         <i class="fa-solid fa-xmark red"></i>
                         {% else %}

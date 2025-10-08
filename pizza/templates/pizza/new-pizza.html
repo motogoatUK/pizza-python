@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% load crispy_forms_tags %}
+
+{% block content%}
+{% include "nav-small.html" %}
+<div class="card-body">
+    {% if user.is_authenticated %}
+    <h3>Add a Pizza, {{ user.username }}</h3>
+    <form id="orderForm" method="post">
+        {{ order_form | crispy }}
+        {% csrf_token %}
+        <button id="submitButton" type="submit" class="btn btn-primary">Add Pizza</button>
+    </form>
+    {% else %}
+    <p>You need to be Logged in to add a pizza</p>
+    {% endif %}
+</div>
+<script src="{% static 'js/add-pizza.js' %}"></script>
+{% endblock %}

@@ -1,6 +1,7 @@
 from django.shortcuts import render, get_object_or_404, reverse
 from django.views import generic
 from django.http import HttpResponseRedirect
+from django.template.defaultfilters import slugify
 from .models import Pizza
 from .forms import OrderForm
 
@@ -20,17 +21,58 @@ class MyPizzas(generic.ListView):
     template_name = "pizza/all-pizzas.html"
 
 
+def new_pizza(request):
+    """
+    Shows blank :model:`Pizza` form.
+
+    Once saved shows pizza list screen
+    """
+    if request.method == "POST":
+        new_pizza = OrderForm(request.POST)
+        if new_pizza.is_valid():
+            # We need to add user and a slug
+            new_order = new_pizza.save(commit=False)
+            new_order.user_id = request.user
+            new_order.slug = slugify(new_order.title)
+            new_order.save()
+            new_pizza.save_m2m()  # Required to save Toppings
+            return HttpResponseRedirect(
+                reverse('all_pizzas')+'#'+new_order.slug)
+        return render(
+            request,
+            "pizza/new-pizza.html",
+            {
+                "order_form": new_pizza,
+            }
+        )
+    else:
+        order_form = OrderForm()
+        return render(
+            request,
+            "pizza/new-pizza.html",
+            {
+                "order_form": order_form,
+            }
+        )
+
+
 def pizza_order(request, slug):
     """
-    Display detail of :models: Pizza+Base+Toppings.
+    Display detail of :model:`Pizza`+`Base`+`Toppings`.
+    Handles POST data to save in DB
+
     **Context**
     ``Pizza``
-        An instance of :model:`Pizza`.
+        An instance of :model:`Pizza`,
+    ``order_form``
+        A form to update any fields.
+
     **Template:**
-    :template:`pizza/pizza_order.html`
+    :template:`pizza/pizza-order.html`
     """
     queryset = Pizza.objects.all()
     order = get_object_or_404(queryset, slug=slug)
+    order_form = OrderForm(instance=order)
 
     if request.method == "POST":
         order_form = OrderForm(data=request.POST, instance=order)
@@ -38,13 +80,13 @@ def pizza_order(request, slug):
             new_order = order_form.save(commit=False)
             new_order.user_id = request.user
             new_order.save()
+            order_form.save_m2m()  # Required to save Toppings
         else:
             print("invalid form")
 
-    order_form = OrderForm(instance=order)
     return render(
         request,
-        "pizza/pizza_order.html",
+        "pizza/pizza-order.html",
         {
             "pizza": order,
             "order_form": order_form,
