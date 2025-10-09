@@ -43,39 +43,41 @@
                         </p>
                     </div>
                 </div>
-                <p>{{ pizza.base_id.name }}
+                <div id="{{pizza.slug}}">
+                    <p>{{ pizza.base_id.name }}
+                        <br>
+                        <span class="ingredients w-auto">
+                            <span class="px-2">
+                                {% if not pizza.cheese %}
+                                <i class="fa-solid fa-xmark red"></i>
+                                {% else %}
+                                <i class="fa-solid fa-check green"></i>
+                                {% endif %}
+                                Cheese
+                            </span>
+                            <span class="px-2">
+                                {% if not pizza.tom_sauce %}
+                                <i class="fa-solid fa-xmark red"></i>
+                                {% else %}
+                                <i class="fa-solid fa-check green"></i>
+                                {% endif %}
+                                Sauce
+                            </span>
+                        </span>
+                    </p>
                     <br>
-                    <span class="ingredients w-auto">
-                        <span class="px-2">
-                            {% if not pizza.cheese %}
-                            <i class="fa-solid fa-xmark red"></i>
-                            {% else %}
-                            <i class="fa-solid fa-check green"></i>
-                            {% endif %}
-                            Cheese
-                        </span>
-                        <span class="px-2">
-                            {% if not pizza.tom_sauce %}
-                            <i class="fa-solid fa-xmark red"></i>
-                            {% else %}
-                            <i class="fa-solid fa-check green"></i>
-                            {% endif %}
-                            Sauce
-                        </span>
-                    </span>
-                </p>
-                <br>
-                <p> {% for topping in pizza.topping_id.all %}
-                    <i class="fa-solid fa-plus"></i> {{topping.name}}
-                    {% endfor %}
-                </p>
+                    <p> {% for topping in pizza.topping_id.all %}
+                        <i class="fa-solid fa-plus"></i> {{topping.name}}
+                        {% endfor %}
+                    </p>
+                </div>
                 <p>Created by: {{ pizza.user_id }} on {{pizza.created_on}}
                 </p>
                 {% if user.is_authenticated %}
                 <div class="row">
                     <div class="col-6">
-                        <a href="">
-                            <button data-slug-field="{{pizza.slug}}" type="button" class="btn btn-primary">
+                        <a href="#">
+                            <button data-slug-field="{{pizza.slug}}" type="button" class="btn btn-order btn-primary">
                                 Order this Pizza</button></a>
                     </div>
                     <div class="col-6">
@@ -99,3 +101,8 @@
 {% endblock %}
 <!-- end content -->
 {% endblock %}
+{% block modal-title %}Order Confirmation{% endblock %}
+{% block modal-content %}
+<div id="modal-content"></div>
+{% endblock %}
+{% block modal-submit %}Confirm Order{% endblock %}

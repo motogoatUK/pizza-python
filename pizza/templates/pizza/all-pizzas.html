@@ -14,8 +14,8 @@
             {%endif%}
             <div class="card-body{% if user == pizza.user_id %} my-pizza{%endif%}">
                 <!-- The pizza content goes inside the card-text. -->
-                <div class="card-text">
-                    <h2 id="{{pizza.slug}}">{{pizza.title}}</h2>
+                <div id="{{pizza.slug}}" class="card-text">
+                    <h2>{{pizza.title}}</h2>
                     <p class="subtitle">Made by {{ pizza.user_id }}
                         <br>Created on {{ pizza.created_on }}
                         <!-- Show modified date if it is different to created date -->
@@ -49,7 +49,7 @@
                 </div>
                 <div class="row pr-2">{% if user.is_authenticated %}
                     <a class="col-6 p-2" href="#">
-                        <button data-slug-field="{{pizza.slug}}" type="button" class="btn btn-primary">
+                        <button data-slug-field="{{pizza.slug}}" type="button" class="btn btn-order btn-primary">
                             Order this Pizza</button></a>
                     <a class="col-6 p-2" href="{% url 'new_pizza' %}">
                         <button type="button" class="btn btn-primary">
@@ -78,3 +78,8 @@
     </div>
 </section>
 {% endblock %}
+{% block modal-title %}Order Confirmation{% endblock %}
+{% block modal-content %}
+<div id="modal-content"></div>
+{% endblock %}
+{% block modal-submit %}Confirm Order{% endblock %}
