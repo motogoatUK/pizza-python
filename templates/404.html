@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Not found!{% endblock %}
+
+{% block content %}
+<h1 class="text-center">PizzaPython</h1>
+<!--Mobile nav goes here-->
+{% include 'nav-small.html' %}
+<div class="container mb-2 text-center">
+    <div>
+        <p class="h1">That's a 404! </p>
+        <h2>page not found</h2>
+        <p>Eaten by the python!</p>
+        <p class="h1">PizzaPython</p>
+        <img class="img-fluid" src="{% static 'images/pizza-python-header.webp' %}"
+            alt="A python curled around and about to eat a pizza">
+    </div>
+</div>
+{% endblock %}

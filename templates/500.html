@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block title %}Server error!{% endblock %}
+
+{% block content %}
+<h1 class="text-center">PizzaPython</h1>
+<!--Mobile nav goes here-->
+{% include 'nav-small.html' %}
+<div class="container mb-2 text-center">
+    <h2>Oops! It's us, not you </h2>
+    <h3 class="h1">That's a 500 server error</h3>
+    <p>Maybe a form you submitted or a rouge URL, but this should not
+        have happened - we will give the devs a poke!
+        You can try the links above, but you may end up back here--until the problem is fixed.</p>
+    <p class="h1">PizzaPython</p>
+</div>
+{% endblock %}
