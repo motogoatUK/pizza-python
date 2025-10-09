@@ -9,13 +9,20 @@
     <div class="row">
         <div class="col card mb-4 mt-3">
             {% for pizza in object_list %}
+             {% if pizza.show_on_homepage %}
+                    <div class="text-align-right">
+                        <span>Featured on Homepage!<span>
+                    </div>
+                    {% endif %}
             {% if user == pizza.user_id %}
             <h4>Your Pizza:</h4>
             {%endif%}
-            <div class="card-body{% if user == pizza.user_id %} my-pizza{%endif%}">
+            
+            <div class="card-body shadow{% if user == pizza.user_id %} my-pizza{%endif%}">
                 <!-- The pizza content goes inside the card-text. -->
                 <div id="{{pizza.slug}}" class="card-text">
                     <h2>{{pizza.title}}</h2>
+                   
                     <p class="subtitle">Made by {{ pizza.user_id }}
                         <br>Created on {{ pizza.created_on }}
                         <!-- Show modified date if it is different to created date -->

@@ -36,6 +36,7 @@ class Pizza(models.Model):
     created_on = models.DateTimeField(auto_now_add=True)
     updated_on = models.DateTimeField(auto_now=True)
     show_on_homepage = models.BooleanField(default=False)
+    num_order = models.IntegerField(default=0)
 
     def __str__(self):
         return f"Pizza: {self.title} | created by {self.user_id}"

@@ -112,3 +112,16 @@ def delete_pizza(request, slug):
         print('You can only delete your own pizzas!')
 
     return HttpResponseRedirect(reverse('all_pizzas',))
+
+
+def order_pizza(request, slug):
+    """
+    Adds confirmed order to pizza
+    object and returns user to pizza list
+    """
+    queryset = Pizza.objects.all()
+    ordered_pizza = get_object_or_404(queryset, slug=slug)
+    ordered_pizza.num_order += 1
+    ordered_pizza.save()
+    print("Pizza Ordered!")
+    return HttpResponseRedirect(reverse('all_pizzas',))
