@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% load static %}
 {% load crispy_forms_tags %}
-
+{% block title %}Editing a Pizza{% endblock %}
 {% block content %}
 
 {% include 'nav-small.html'%}
@@ -63,18 +63,21 @@
             </div>
             <div class="card-body">
                 {% if user.is_authenticated %}
-                <h3>Edit this Pizza:</h3>
-                <p>{{ user.username }}</p>
-                <form id="orderForm" method="post">
-                    {{ order_form | crispy }}
-                    {% csrf_token %}
-                    <button id="submitButton" type="submit" class="btn btn-primary">Save Changes</button>
-                    <a href="{% url 'all_pizzas' %}">
-                        <button type="button" class="btn btn-secondary">Go back</button>
-                    </a>
-                </form>
+                    {% if user == pizza.user_id %}
+                    <h3>Edit this Pizza:</h3>
+                    <form id="orderForm" method="post">
+                        {{ order_form | crispy }}
+                        {% csrf_token %}
+                        <button id="submitButton" type="submit" class="btn btn-primary">Save Changes</button>
+                        <a href="{% url 'all_pizzas' %}">
+                            <button type="button" class="btn btn-secondary">Go back</button>
+                        </a>
+                    </form>
+                    {% else %}
+                    <p class="alert alert-primary text-center">Only {{ pizza.user_id }} can edit this Pizza</p>
+                    {% endif %}
                 {% else %}
-                <p>Log in to edit this pizza</p>
+                <p class="alert alert-danger text-center">Not logged in!</p>
                 {% endif %}
             </div>
         </div>

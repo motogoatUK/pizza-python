@@ -3,6 +3,14 @@ from .models import Pizza, Topping
 
 
 class OrderForm(forms.ModelForm):
+    """
+    form:`OrderForm`
+
+    Allows users to add new pizzas.
+    Also used to for editing existing pizzas
+    Excludes admin-only fields.
+    *Converts from selection field to checkboxes for ease of use*
+    """
     topping_id = forms.ModelMultipleChoiceField(
         queryset=Topping.objects.all(),
         widget=forms.CheckboxSelectMultiple,
@@ -16,7 +24,8 @@ class OrderForm(forms.ModelForm):
         exclude = [
             'show_on_homepage',
             'user_id',
-            'featured_image'
+            'featured_image',
+            'num_order',
         ]
         labels = {
             'base_id': 'Base',

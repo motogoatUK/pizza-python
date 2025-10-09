@@ -1,28 +1,30 @@
 {% extends "base.html" %}
 {% load static %}
-
+{% block title %}All Pizzas{% endblock %}
 {% block content%}
 <h1 class="display-1 text-center">PizzaPython</h1>
 {% include "nav-small.html" %}
-<section class="container pt-5 pb-5 shadow-sm">
+<section class="container pt-2 pb-2 shadow-sm">
     <h1>Pizza list</h1>
     <div class="row">
         <div class="col card mb-4 mt-3">
-            {% for pizza in object_list %}
-             {% if pizza.show_on_homepage %}
-                    <div class="text-align-right">
-                        <span>Featured on Homepage!<span>
-                    </div>
-                    {% endif %}
-            {% if user == pizza.user_id %}
-            <h4>Your Pizza:</h4>
-            {%endif%}
-            
+            <!-- start for loop -->
+             {% for pizza in object_list %}
+                <!-- check for matching user -->
+                 {% if user == pizza.user_id %}
+                <h4>Your Pizza:</h4>
+                {%endif%}
+            <!-- highlight Pizza if featured on homepage -->
+            {% if pizza.show_on_homepage %}
+            <div class="text-align-right">
+                <span class="alert alert-success p-1 text-center">Featured on Homepage!<span>
+            </div>
+            {% endif %}
+            <!-- add my-pizza class if user matches -->
             <div class="card-body shadow{% if user == pizza.user_id %} my-pizza{%endif%}">
                 <!-- The pizza content goes inside the card-text. -->
                 <div id="{{pizza.slug}}" class="card-text">
                     <h2>{{pizza.title}}</h2>
-                   
                     <p class="subtitle">Made by {{ pizza.user_id }}
                         <br>Created on {{ pizza.created_on }}
                         <!-- Show modified date if it is different to created date -->
@@ -49,11 +51,13 @@
                             Sauce
                         </span>
                         <br>
+                        <!-- loop through toppings -->
                         {% for topping in pizza.topping_id.all %}
                         <i class="fa-solid fa-plus"></i>{{topping.name}}
                         {% endfor %}
                     </p>
                 </div>
+                <!-- user needs to be logged in to add or order Pizzas -->
                 <div class="row pr-2">{% if user.is_authenticated %}
                     <a class="col-6 p-2" href="#">
                         <button data-slug-field="{{pizza.slug}}" type="button" class="btn btn-order btn-primary">
@@ -64,6 +68,7 @@
                     </a>
                 </div>
                 <div class="row pr-2">
+                    <!-- only the Pizza's creator can edit or delete this Pizza -->
                     {% if user == pizza.user_id %}
                     <a class="col-6 p-2" href="{% url 'edit_pizza' pizza.slug %}">
                         <button type="button" class="btn btn-primary">
@@ -75,11 +80,12 @@
                     </a>
                     {% endif %}
                     {% else %}
-                    <a class="col-4" href="{% url 'login' %}">Login/Register to edit this Pizza</a>
+                    <a class="col-12" href="{% url 'login' %}">Login/Register to edit this Pizza</a>
                     {% endif %}
                 </div>
             </div>
             <hr>
+            <!-- end looping through Pizzas -->
             {% endfor %}
         </div>
     </div>
