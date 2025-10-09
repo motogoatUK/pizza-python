@@ -1,6 +1,7 @@
 from django.shortcuts import render, get_object_or_404, reverse
 from django.views import generic
 from django.http import HttpResponseRedirect
+from django.contrib import messages
 from django.template.defaultfilters import slugify
 from .models import Pizza
 from .forms import OrderForm
@@ -36,15 +37,18 @@ def new_pizza(request):
             new_order.slug = slugify(new_order.title)
             new_order.save()
             new_pizza.save_m2m()  # Required to save Toppings
+            messages.add_message(request, messages.SUCCESS, "New Pizza added!")
             return HttpResponseRedirect(
                 reverse('all_pizzas')+'#'+new_order.slug)
-        return render(
-            request,
-            "pizza/new-pizza.html",
-            {
-                "order_form": new_pizza,
-            }
-        )
+        else:
+            messages.add_message(request, messages.ERROR, "Error in form")
+            return render(
+                request,
+                "pizza/new-pizza.html",
+                {
+                    "order_form": new_pizza,
+                }
+            )
     else:
         order_form = OrderForm()
         return render(
@@ -83,10 +87,11 @@ def edit_pizza(request, slug):
             new_order.slug = slugify(new_order.title)
             new_order.save()
             order_form.save_m2m()  # Required to save Toppings
+            messages.add_message(request, messages.SUCCESS, "Changes saved!")
             return HttpResponseRedirect(
                 reverse('all_pizzas')+'#'+new_order.slug)
         else:
-            print("invalid form")
+            messages.add_message(request, messages.ERROR, "invalid form")
 
     return render(
         request,
@@ -107,9 +112,13 @@ def delete_pizza(request, slug):
     # Check the user is the creator of the Pizza
     if doomed_pizza.user_id == request.user:
         doomed_pizza.delete()
-        print('Pizza deleted!')
+        messages.add_message(request, messages.SUCCESS, "Pizza deleted!")
     else:
-        print('You can only delete your own pizzas!')
+        messages.add_message(
+            request,
+            messages.ERROR,
+            "You can only delete your own pizzas!"
+            )
 
     return HttpResponseRedirect(reverse('all_pizzas',))
 
@@ -123,5 +132,5 @@ def order_pizza(request, slug):
     ordered_pizza = get_object_or_404(queryset, slug=slug)
     ordered_pizza.num_order += 1
     ordered_pizza.save()
-    print("Pizza Ordered!")
+    messages.add_message(request, messages.SUCCESS, "Pizza Ordered!")
     return HttpResponseRedirect(reverse('all_pizzas',))
