@@ -3,7 +3,7 @@
 {% url 'home' as home_url %}
 {% url 'all_pizzas' as pizzas_url %}
 {% url 'new_pizza' as new_pizza_url %}
-
+{% url 'signup' as register_url %}
 {% url 'login' as login_url %}
 {% url 'logout' as logout_url %}
 
@@ -11,7 +11,7 @@
 <html lang="en">
 <head>
     <title>PizzaPython - {%block title%}Home{%endblock%}</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta charset="utf-8">
 
     <!-- Google Fonts -->
@@ -41,17 +41,27 @@
     <div class="container">
 
         <!-- Navigation Bar shown on wider screens -->
-        <nav id="navbar" class="sticky-top bg-light">
-            <ul class="nav">
-                <a href="{{ home_url }}">
-                    <img src="{% static 'images/pizza-python-logo.webp' %}" alt="PP logo">
-                </a>
+        <nav id="navbar" class="sticky-top bg-dark">  
+            <a class="position-absolute" href="{{ home_url }}">
+                <img src="{% static 'images/pizza-python-logo.webp' %}" alt="PP logo"></a>          
+            <ul class="nav justify-content-center">                
                 <li class="nav-item">
                     <a class="nav-link {% if request.path == home_url %}active " aria-current="page{% endif %}"
                         href="{{ home_url }}">PizzaPython
                     </a>
+                </li>                
+                <li class="nav-item">
+                    <a class="nav-link {% if request.path == pizzas_url %}active " aria-current="page{% endif %}"
+                        href="{{ pizzas_url }}">All Pizzas
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link {% if request.path == new_pizza_url %}active " aria-current="page{% endif %}"
+                        href="{{ new_pizza_url }}">Make a Pizza
+                    </a>
                 </li>
                 {% if user.is_authenticated %}
+                <span class="align-self-center px-1 px-lg-4">Logged in as {{user}}</span>
                 <li class="nav-item">
                     <a class="nav-link {% if request.path == logout_url %}active" aria-current="page{% endif %}"
                         href="{{ logout_url }}">Logout</a>
@@ -63,20 +73,10 @@
                         href="{{ login_url }}">Login</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link {% if request.path == login_url %}active" aria-current="page{% endif %}"
+                    <a class="nav-link {% if request.path == register_url %}active" aria-current="page{% endif %}"
                         href="{% url 'signup' %}">Register</a>
                 </li>
                 {% endif %}
-                <li class="nav-item">
-                    <a class="nav-link {% if request.path == pizzas_url %}active " aria-current="page{% endif %}"
-                        href="{{ pizzas_url }}">All Pizzas
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link {% if request.path == new_pizza_url %}active " aria-current="page{% endif %}"
-                        href="{{ new_pizza_url }}">Make a Pizza
-                    </a>
-                </li>
             </ul>
         </nav>
 
@@ -85,8 +85,8 @@
             <div class="row">
                 <div class="col-md-8 offset-md-2">
                     {% for message in messages %}
-                    <div class="alert {{ message.tags }} alert-dismissible
-            fade show" id="msg" role="alert">
+                    <div class="alert {{ message.tags }} alert-dismissible fade show"
+                            id="msg" role="alert">
                         {{ message | safe }}
                         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                     </div>
