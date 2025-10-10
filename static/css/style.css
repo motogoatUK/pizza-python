@@ -39,6 +39,9 @@ h2, .h2 {
 #nav-small {
     display:block;
 }
+#nav-small button {
+    width:142px;
+}
 #main-header {
     margin-top: 10px;
     position: relative;
@@ -68,8 +71,9 @@ footer i {
     color: var(--light-shade);
 }
 .nav {
-    border:var(--primary) solid 2px;
-    border-radius:3px
+    border:var(--light-accent) solid 2px;
+    border-radius:3px;
+    box-shadow: 0 2px 3px var(--primary);
 }
 .my-pizza {
     border:var(--dark-shade) solid 2px;

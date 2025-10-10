@@ -11,10 +11,8 @@
                 alt="A python curled around and about to eat a pizza">
         </div>
     </div>
-    {%include 'nav-small.html' %}
-
 </div>
-
+{%include 'nav-small.html' %}
 {% block pizza_block %}
 <section class="container pt-5 pb-5 shadow-sm" id="pizza-list">
     <h1>Featured Pizzas</h1>
@@ -75,20 +73,14 @@
                 </p>
                 {% if user.is_authenticated %}
                 <div class="row">
-                    <div class="col-6">
+                    <div class="col-12 text-center">
                         <a href="#">
                             <button data-slug-field="{{pizza.slug}}" type="button" class="btn btn-order btn-primary">
                                 Order this Pizza</button></a>
                     </div>
-                    <div class="col-6">
-                        <a href="{% url 'all_pizzas' %}">
-                            <button type="button" class="btn btn-primary">
-                                Edit a pizza</button>
-                        </a>
-                    </div>
                 </div>
                 {% else %}
-                <a href="{% url 'login' %}">Login/Register to make your own Pizza</a>
+                <a href="{% url 'login' %}">Login/Register to order or make your own Pizza</a>
                 {% endif %}
                 </p>
             </div>
