@@ -1,21 +1,73 @@
 {% extends "base.html" %}
 {% load static %}
-
 {% block content %}
 
 <div id="main-header" class="container p-0">
     <div class="row g-0 h-25">
-        <div class="col">
-            <h1>PizzaPython</h1>
-            <img class="img-fluid" src="{% static 'images/pizza-python-header.webp' %}"
+        
+        <div class="col-md-8">
+             <img class="img-fluid" src="{% static 'images/pizza-python-header.webp' %}"
                 alt="A python curled around and about to eat a pizza">
+                </div>
+        <div id="about" class="col-md-4">
+              <p>Order ONLINE now! Pizzas made ready for collection:</p>
+            <ul class="list-group">
+                {% for base in bases_list %}
+                <li class="list-group-item-warning">{{ base }}</li>
+                {% endfor %}
+            </ul>
+            <table id="opening_times">
+                <tr>
+                    <th>Opening Times</th>
+                </tr>
+                <tr>
+                    <td>Monday</td>
+                    <td>7pm</td>
+                    <td></td>
+                </tr>
+                <tr>
+                <td>Tuesday</td>
+                <td></td>
+                <td></td>
+                </tr>
+                <tr>
+                    <td>Wed</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                <td>Thu</td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                        <td>Fri</td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>Sat</td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>Sun</td>
+                        <td></td>
+                        <td>11pm</td>
+                    </tr>
+               </table>
         </div>
-    </div>
+           <h1>PizzaPython</h1>
+        </div>    
 </div>
 {%include 'nav-small.html' %}
-{% block pizza_block %}
-<section class="container pt-5 pb-5 shadow-sm" id="pizza-list">
-    <h1>Featured Pizzas</h1>
+<section class="container pt-3 pb-5 shadow-sm" id="pizza-list">
+    
+    <p>All our pizzas are created with fresh
+        ingredients, handcrafted dough and finest cheese.</p>
+    <p>Make your own Pizza from the <a href="{% url 'all_pizzas' %}"
+            class="btn btn-order btn-primary">All Pizzas</a> page.</p> 
+    <p class="h1">Featured Pizzas</p>
     <div class="row">
         <!-- Show all the pizzas in card format -->
         {% for pizza in object_list %}
@@ -31,7 +83,7 @@
                         <h2>{{ pizza.title }}</h2>
                     </div>
                     <div class="card-image-text">
-                        <p>A classic {{ pizza.base_id.name }} pizza base
+                        <p>A classic {{ pizza.base_id }} pizza base
                             {% if pizza.topping_id.all %} topped with
                             {% for topping in pizza.topping_id.all %}
                             {{topping.name}}
@@ -47,50 +99,51 @@
                         <span class="ingredients w-auto">
                             <span class="px-2">
                                 {% if not pizza.cheese %}
-                                <i class="fa-solid fa-xmark red"></i>
+                                <i class="fa-solid fa-xmark red" title="No cheese"></i>
+                                <span class="sr-only">No cheese</span>
                                 {% else %}
-                                <i class="fa-solid fa-check green"></i>
+                                <i class="fa-solid fa-check green" title="With cheese"></i>
+                                <span class="sr-only">With cheese</span>
                                 {% endif %}
                                 Cheese
                             </span>
                             <span class="px-2">
                                 {% if not pizza.tom_sauce %}
-                                <i class="fa-solid fa-xmark red"></i>
+                                <i class="fa-solid fa-xmark red" title="No sauce"></i>
+                                <span class="sr-only">No sauce</span>
                                 {% else %}
-                                <i class="fa-solid fa-check green"></i>
+                                <i class="fa-solid fa-check green" title="With sauce"></i>
+                                <span class="sr-only">With sauce</span>
                                 {% endif %}
                                 Sauce
                             </span>
                         </span>
                     </p>
                     <br>
-                    <p> {% for topping in pizza.topping_id.all %}
+                    <p>
+                        {% for topping in pizza.topping_id.all %}
                         <i class="fa-solid fa-plus"></i> {{topping.name}}
                         {% endfor %}
                     </p>
                 </div>
-                <p>Created by: {{ pizza.user_id }} on {{pizza.created_on}}
+                <p>
+                    Created by: {{ pizza.user_id }} on {{pizza.created_on}}
                 </p>
                 {% if user.is_authenticated %}
                 <div class="row">
                     <div class="col-12 text-center">
-                        <a href="#">
-                            <button data-slug-field="{{pizza.slug}}" type="button" class="btn btn-order btn-primary">
-                                Order this Pizza</button></a>
+                        <a href="#" data-slug-field="{{pizza.slug}}"
+                          class="btn btn-order btn-primary">Order this Pizza</a>
                     </div>
                 </div>
                 {% else %}
                 <a href="{% url 'login' %}">Login/Register to order or make your own Pizza</a>
                 {% endif %}
-                </p>
             </div>
         </div>
         {% endfor %}
     </div>
-    </div>
 </section>
-<!-- end pizza_block -->
-{% endblock %}
 <!-- end content -->
 {% endblock %}
 {% block modal-title %}Order Confirmation{% endblock %}
