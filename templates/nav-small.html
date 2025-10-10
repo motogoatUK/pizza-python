@@ -4,7 +4,7 @@
         <div class="row">
             <div class="d-flex justify-content-around gap-2">
                 <a href="{% url 'home' %}" class="btn btn-primary">Home</a>
-                <a href="#" class="btn btn-primary">About Us</a>
+                <a href="{% url 'about-us' %}" class="btn btn-primary">About Us</a>
             </div>
             {% if user.is_authenticated %}
             <div class="col-12 m-1">     

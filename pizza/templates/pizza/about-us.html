@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}About Us{% endblock %}
+{% block content %}
+<h1 class="display-1 text-center">PizzaPython</h1>
+{% include 'nav-small.html'%}
+<section id="about-us" class="container pt-2 pb-2 shadow-sm">
+    <h2>About Us</h2>
+    <p>Bases available are shown below</p>
+    <div class="card-body mb-4">
+        <!-- Include the information from the about section shown on wider screens on the homepage -->
+        {% include 'about.html'%}
+    </div>
+    <p>Order a pre-made pizza from the homepage or from the list of all-pizzas.</p>
+    <p>If you don't see one you like, you can make your own! Here's how:</p>
+    <p class="mx-3">Once you're registered, simply login and select "Make a Pizza" from the Menu</p>
+    <p class="mx-3">Choose a suitable name then select a base, choose if you want the sauce 
+        or cheese as default then select any your favourite toppings</p>
+    <p class="mx-3">The Pizza is saved and can be ordered at any time</p>
+    <p>If your pizza becomes popular, it may be featured, along with an image on the homepage!</p>
+    <p>Eat responsibly and watch out for the<br>
+    <img class="img-fluid" src="{% static 'images/pizza-python-header.webp' %}"
+            alt="A python curled around and about to eat a pizza"><br>
+   
+    </p> <div class="text-center h1">PizzaPython!</div>
+</section>
+{% endblock %}

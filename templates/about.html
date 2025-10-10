@@ -1,46 +1,50 @@
-    <p>Order ONLINE now! Pizzas made ready for collection:</p>
-    <ul class="list-group">
-        {% for base in bases_list %}
-        <li class="list-group-item-warning">{{ base }}</li>
-        {% endfor %}
-    </ul>
-    <table id="opening_times">
+<p>Order ONLINE now! Pizzas made ready for collection:</p>
+<ul class="list-group list-unstyled">
+    {% for base in bases_list %}
+    <li class="list-group-item list-group-item-info">{{ base }}</li>
+    {% endfor %}
+</ul>
+<table id="opening_times" class="p-2">
+    <thead>
         <tr>
-            <th>Opening Times</th>
+            <th class="text-center" colspan="3">Opening Times</th>
         </tr>
+    </thead>
+    <tbody>
         <tr>
             <td>Monday</td>
-            <td>7pm</td>
-            <td>11pm</td>
+            <td>7pm </td>
+            <td>- 11pm</td>
         </tr>
         <tr>
             <td>Tuesday</td>
-            <td></td>
-            <td></td>
+            <td>4pm </td>
+            <td>- 12am</td>
         </tr>
         <tr>
-            <td>Wed</td>
-            <td></td>
-            <td></td>
+            <td>Wednesday</td>
+            <td>4pm </td>
+            <td>- 12am</td>
         </tr>
         <tr>
-            <td>Thu</td>
-            <td></td>
-            <td></td>
+            <td>Thursday</td>
+            <td>1pm </td>
+            <td>- 1am</td>
         </tr>
         <tr>
-            <td>Fri</td>
-            <td></td>
-            <td></td>
+            <td>Friday</td>
+            <td>1pm </td>
+            <td>- 1am</td>
         </tr>
         <tr>
-            <td>Sat</td>
-            <td></td>
-            <td></td>
+            <td>Saturday</td>
+            <td>12pm </td>
+            <td>- 2am</td>
         </tr>
         <tr>
-            <td>Sun</td>
-            <td></td>
-            <td>11pm</td>
+            <td>Sunday</td>
+            <td>12pm </td>
+            <td>- 11pm</td>
         </tr>
-    </table>
+    </tbody>
+</table>
