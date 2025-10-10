@@ -9,4 +9,5 @@ urlpatterns = [
     path('new-pizza/', views.new_pizza, name='new_pizza'),
     path('delete-pizza/<slug:slug>/', views.delete_pizza, name='delete_pizza'),
     path('order-pizza/<slug:slug>/', views.order_pizza),
+    path('about-us/', views.about_us, name="about-us"),
 ]

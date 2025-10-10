@@ -3,7 +3,7 @@ from django.views import generic
 from django.http import HttpResponseRedirect
 from django.contrib import messages
 from django.template.defaultfilters import slugify
-from .models import Pizza
+from .models import Pizza, Base
 from .forms import OrderForm
 
 
@@ -134,3 +134,13 @@ def order_pizza(request, slug):
     ordered_pizza.save()
     messages.add_message(request, messages.SUCCESS, "Pizza Ordered!")
     return HttpResponseRedirect(reverse('all_pizzas',))
+
+
+def bases_list(request):
+    base_list = Base.objects.all()
+    return render(request, 'about.html', {'bases_list': base_list})
+
+
+def about_us(request):
+    base_list = Base.objects.all()
+    return render(request, 'pizza/about-us.html', {'bases_list': base_list})

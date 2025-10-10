@@ -1,77 +1,29 @@
 {% extends "base.html" %}
 {% load static %}
 {% block content %}
-
 <div id="main-header" class="container p-0">
-    <div class="row g-0 h-25">
-        
+    <div class="row g-0 h-25">        
         <div class="col-md-8">
-             <img class="img-fluid" src="{% static 'images/pizza-python-header.webp' %}"
-                alt="A python curled around and about to eat a pizza">
-                </div>
-        <div id="about" class="col-md-4">
-              <p>Order ONLINE now! Pizzas made ready for collection:</p>
-            <ul class="list-group">
-                {% for base in bases_list %}
-                <li class="list-group-item-warning">{{ base }}</li>
-                {% endfor %}
-            </ul>
-            <table id="opening_times">
-                <tr>
-                    <th>Opening Times</th>
-                </tr>
-                <tr>
-                    <td>Monday</td>
-                    <td>7pm</td>
-                    <td></td>
-                </tr>
-                <tr>
-                <td>Tuesday</td>
-                <td></td>
-                <td></td>
-                </tr>
-                <tr>
-                    <td>Wed</td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                <td>Thu</td>
-                <td></td>
-                <td></td>
-            </tr>
-            <tr>
-                        <td>Fri</td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td>Sat</td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td>Sun</td>
-                        <td></td>
-                        <td>11pm</td>
-                    </tr>
-               </table>
+            <img class="img-fluid" src="{% static 'images/pizza-python-header.webp' %}"
+               alt="A python curled around and about to eat a pizza">
         </div>
-           <h1>PizzaPython</h1>
-        </div>    
+        <div id="about" class="col-md-4">
+            {% include 'about.html' %}
+        </div>
+        <h1>PizzaPython</h1>
+    </div>    
 </div>
-{%include 'nav-small.html' %}
-<section class="container pt-3 pb-5 shadow-sm" id="pizza-list">
-    
-    <p>All our pizzas are created with fresh
+{% include 'nav-small.html' %}
+<section class="container pt-md-3 pb-5 shadow-sm" id="pizza-list">    
+    <p class="tagline p-1">All our pizzas are created with fresh
         ingredients, handcrafted dough and finest cheese.</p>
     <p>Make your own Pizza from the <a href="{% url 'all_pizzas' %}"
             class="btn btn-order btn-primary">All Pizzas</a> page.</p> 
     <p class="h1">Featured Pizzas</p>
     <div class="row">
-        <!-- Show all the pizzas in card format -->
+        <!-- Show all the pizzas in card format --> 
         {% for pizza in object_list %}
-        <div class="col-md-6 mb-4 d-flex align-items-stretch">
+        <div class="col-md-6 mb-4 d-flex align-items-top">
             <div class="card p-2">
                 <div class="card-image">
                     {% if "placeholder" in pizza.featured_image.url %}
