@@ -16,7 +16,8 @@
     Alright, {{ user.username }}! You are already logged in!
 
     {%else%}
-    <h2>Log In</h2>
+
+    <h2>Registered users<br>Log In here:</h2>
     <form method="post">
         {% csrf_token %}
         {{ form | crispy }}
