@@ -7,7 +7,7 @@ from django.views.generic import CreateView
 class SignUpView(SuccessMessageMixin, CreateView):
     """ Django view to register a user
 
-    *uses `SuccessMessageMixin` to output 
+    *uses `SuccessMessageMixin` to output
     success to the message system*
     """
     form_class = UserCreationForm

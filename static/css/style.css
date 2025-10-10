@@ -17,12 +17,14 @@
     padding:0;
 }
 body {
-    background-color: var(--light-shade);
+    background-color: var(--light-accent);
     color:var(--dark-shade);
     font-family: var(--copy-font);
     font-weight: 400;
     font-style: normal;
 }
+/* give the headings the same class so we can use style whilst keeping
+   the headings in order h1->h2->h3 etc */
 h1, .h1 {
     font-family: var(--heading-font);
     color: var(--primary);
@@ -30,35 +32,16 @@ h1, .h1 {
 h2, .h2 {
     font-family: var(--title-font);
 }
-
-/* -- Ids -- */
-/* navbar hidden by default. shown on larger screens via media queries */
-#navbar {
-    display: none;
+.container {
+    background-color: var(--light-shade);
 }
-#nav-small {
-    display:block;
-}
-#nav-small button {
-    width:142px;
-}
-#main-header {
-    margin-top: 10px;
-    position: relative;
-    display: inline-block;
-}
-#main-header h1 {
-    font-size:3.5em;
-    font-weight:bold;
-    text-shadow: var(--light-accent) 2px 2px 4px;
-    position: relative;
-    margin:0 auto;
-}
+/* give the FA-icons some breathing space */
 footer i {
     padding: 0 3px;
 }
 
 /* -- classes -- */
+/* button styles */
 .btn {
     padding: 0.3em 1.5em;
 }
@@ -70,25 +53,48 @@ footer i {
     background-color: var(--dark-shade);
     color: var(--light-shade);
 }
+/* navigation links */
 .nav {
     border:var(--light-accent) solid 2px;
     border-radius:3px;
     box-shadow: 0 2px 3px var(--primary);
 }
+.nav-link {
+    background-color: var(--dark-accent);
+    color: var(--light-shade);
+    box-shadow: var(--primary) 0 2px 2px;
+    border-radius: 5px;
+}
+.nav-link.active {
+    box-shadow: var(--light-accent) 0 2px 2px;
+}
+.nav-link:hover {
+    color: var(--light-accent);
+}
+/* set 1px padding-top so we can have a hover effect by removing it */
+.nav-item {
+    padding-top:1px;
+    margin:1px 2px 4px;
+}
+.nav-item:hover {
+  padding-top:0px;
+}
 .my-pizza {
     border:var(--dark-shade) solid 2px;
     border-radius:3px
 }
-.bg-dark {
-    /* reverses text and background colours */
-    background-color: var(--dark-shade);
-    color:var(--light-shade);
-}
+/* to set background/foreground colours */
 .bg-light {
-    /* reverses text and background colours */
+    /* light text and dark background */
     background-color: var(--light-shade);
     color:var(--dark-shade);
 }
+.bg-dark {
+    /* dark text and light background */
+    background-color: var(--dark-shade);
+    color:var(--light-shade);
+}
+/* to highlight chees/sauce options */
 .ingredients span {
     border: grey solid 1px;
     border-radius: 4px;
@@ -100,6 +106,7 @@ footer i {
 .green {
     color:var(--light-accent);
 }
+/* allow title and description over top of image */
 .card-image {
     position: relative;
 }
@@ -119,6 +126,32 @@ footer i {
     background-color: rgba(255,255,255,.75);
     padding:0 5px;
 }
+/* -- Ids -- */
+/* navbar hidden by default. shown on larger screens via media queries */
+#navbar {
+    display: none;
+}
+#nav-small {
+    display:block;
+}
+/* fix width on nav items for a more pleasant UI */
+#nav-small a {
+    width:142px;
+}
+/* set margin on main header to allow for sticky nav */
+#main-header {
+    margin-top: 10px;
+    position: relative;
+    display: inline-block;
+}
+#main-header h1 {
+    font-size:3.5em;
+    font-weight:bold;
+    text-shadow: var(--light-accent) 2px 2px 4px;
+    position: relative;
+    margin:0 auto;
+}
+
 /* Media Queries */
 @media screen and (max-width: 451px) {
 .card-image-text { 
