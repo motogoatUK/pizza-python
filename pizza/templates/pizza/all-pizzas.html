@@ -59,13 +59,9 @@
                 </div>
                 <!-- user needs to be logged in to add or order Pizzas -->
                 <div class="row pr-2">{% if user.is_authenticated %}
-                    <a class="col-6 p-2" href="#">
+                    <a class="col-12 p-2 text-center" href="#">
                         <button data-slug-field="{{pizza.slug}}" type="button" class="btn btn-order btn-primary">
                             Order this Pizza</button></a>
-                    <a class="col-6 p-2" href="{% url 'new_pizza' %}">
-                        <button type="button" class="btn btn-primary">
-                            Make a pizza</button>
-                    </a>
                 </div>
                 <div class="row pr-2">
                     <!-- only the Pizza's creator can edit or delete this Pizza -->
@@ -75,12 +71,12 @@
                             Edit this pizza</button>
                     </a>
                     <a class="col-6 p-2" href="{% url 'delete_pizza' pizza.slug %}">
-                        <button type="button" class="btn btn-primary btn-delete">
+                        <button type="button" class="btn btn-danger btn-delete">
                             Delete this pizza</button>
                     </a>
                     {% endif %}
                     {% else %}
-                    <a class="col-12" href="{% url 'login' %}">Login/Register to edit this Pizza</a>
+                    <a class="col-12" href="{% url 'login' %}">Login to order or manage this Pizza</a>
                     {% endif %}
                 </div>
             </div>
