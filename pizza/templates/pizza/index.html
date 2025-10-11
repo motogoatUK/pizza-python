@@ -23,7 +23,7 @@
     <div class="row">
         <!-- Show all the pizzas in card format --> 
         {% for pizza in object_list %}
-        <div class="col-md-6 mb-4 d-flex align-items-top">
+        <div class="col-md-6 col-lg-4 mb-4 d-flex align-items-around">
             <div class="card p-2">
                 <div class="card-image">
                     {% if "placeholder" in pizza.featured_image.url %}

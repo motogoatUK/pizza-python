@@ -61,7 +61,7 @@
                     </a>
                 </li>
                 {% if user.is_authenticated %}
-                <span class="align-self-center px-1 px-lg-4">Logged in as {{user}}</span>
+                <li class="align-self-center px-1 px-lg-4">Logged in as {{user}}</li>
                 <li class="nav-item">
                     <a class="nav-link {% if request.path == logout_url %}active" aria-current="page{% endif %}"
                         href="{{ logout_url }}">Logout</a>

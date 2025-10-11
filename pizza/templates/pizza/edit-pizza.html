@@ -17,69 +17,66 @@
         </div>
         <div class="col-md-6">
             Image:
-            {% if "placeholder" in pizza.featured_image.url %}(placeholder)
+            {% if "placeholder" in pizza.featured_image.url %}(placeholder - only admin can change images)
             <img class="img-fluid" src="{% static 'images/default.jpg' %}" alt="default image of a pizza">
             {% else %}
             <img class="img-fluid" src="{{ pizza.featured_image.url }}" alt="{{ pizza.title }}">
             {% endif %}
         </div>
     </div>
-</div>
 
-
-<div class="container">
     <div class="row">
-        <div class="col card mb-4  mt-3 left  top">
+        <div class="col card mb-4 mt-3 shadow">
             <div class="card-body">
                 <!-- The pizza content goes inside the card-text. -->
-                <p class="card-text">
-                <p>{{ pizza.base_id.name }}
+                <div class="card-text">
+                    <div>{{ pizza.base_id.name }}
+                        <br>
+                        <span class="ingredients w-auto">
+                            <span class="px-2">
+                                {% if not pizza.cheese %}
+                                <i class="fa-solid fa-xmark red"></i>
+                                {% else %}
+                                <i class="fa-solid fa-check green"></i>
+                                {% endif %}
+                                Cheese
+                            </span>
+                            <span class="px-2">
+                                {% if not pizza.tom_sauce %}
+                                <i class="fa-solid fa-xmark red"></i>
+                                {% else %}
+                                <i class="fa-solid fa-check green"></i>
+                                {% endif %}
+                                Sauce
+                            </span>
+                        </span>
+                    </div>
                     <br>
-                    <span class="ingredients w-auto">
-                        <span class="px-2">
-                            {% if not pizza.cheese %}
-                            <i class="fa-solid fa-xmark red"></i>
-                            {% else %}
-                            <i class="fa-solid fa-check green"></i>
-                            {% endif %}
-                            Cheese
-                        </span>
-                        <span class="px-2">
-                            {% if not pizza.tom_sauce %}
-                            <i class="fa-solid fa-xmark red"></i>
-                            {% else %}
-                            <i class="fa-solid fa-check green"></i>
-                            {% endif %}
-                            Sauce
-                        </span>
-                    </span>
-                </p>
-                <br>
-                <p> {% for topping in pizza.topping_id.all %}
-                    <i class="fa-solid fa-plus"></i> {{topping.name}}
-                    {% endfor %}
-                </p>
-                </p>
-            </div>
-            <div class="card-body">
-                {% if user.is_authenticated %}
-                    {% if user == pizza.user_id %}
-                    <h3>Edit this Pizza:</h3>
-                    <form id="orderForm" method="post">
-                        {{ order_form | crispy }}
-                        {% csrf_token %}
-                        <button id="submitButton" type="submit" class="btn btn-primary">Save Changes</button>
-                        <a href="{% url 'all_pizzas' %}">
-                            <button type="button" class="btn btn-secondary">Go back</button>
-                        </a>
-                    </form>
-                    {% else %}
-                    <p class="alert alert-primary text-center">Only {{ pizza.user_id }} can edit this Pizza</p>
-                    {% endif %}
-                {% else %}
-                <p class="alert alert-danger text-center">Not logged in!</p>
-                {% endif %}
+                    <p> {% for topping in pizza.topping_id.all %}
+                        <i class="fa-solid fa-plus"></i> {{topping.name}}
+                        {% endfor %}
+                    </p>
+                </div>
             </div>
         </div>
+        <!-- display edit form if user is logged in and is the creator -->
+        <div class="card-body p-2 mb-2">
+            {% if user.is_authenticated %}
+            {% if user == pizza.user_id %}
+            <h3>Edit this Pizza:</h3>
+            <form id="orderForm" method="post">
+                {{ order_form | crispy }}
+                {% csrf_token %}
+                <button id="submitButton" type="submit" class="btn btn-primary">Save Changes</button>
+                <a href="{% url 'all_pizzas' %}" class="btn btn-secondary">Go back</a>
+            </form>
+            {% else %} <!-- user logged in but not creator -->
+            <p class="alert alert-primary text-center">Only {{ pizza.user_id }} can edit this Pizza</p>
+            {% endif %}
+            {% else %} <!-- not logged in -->
+            <p class="alert alert-danger text-center">Not logged in!</p>
+            {% endif %}
+        </div>
     </div>
-    {% endblock %}
+</div>
+{% endblock %}
