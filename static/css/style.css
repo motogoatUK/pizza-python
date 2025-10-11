@@ -58,6 +58,7 @@ footer i {
     border:var(--light-accent) solid 2px;
     border-radius:3px;
     box-shadow: 0 2px 3px var(--primary);
+    height:55px;
 }
 .nav-link {
     background-color: var(--dark-accent);
