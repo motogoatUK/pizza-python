@@ -10,7 +10,7 @@ for (let button of deleteButtons) {
         let message = "Are you sure you want to delete ";
         message += "this delicious Pizza?";
         /* set modal button link */
-        modalConfirm.href = e.target.parentElement.href;
+        modalConfirm.href = e.target.href;
         /* remove primary class and add danger class for delete */
         modalConfirm.classList.remove("btn-primary");
         modalConfirm.classList.add("btn-danger");
