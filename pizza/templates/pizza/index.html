@@ -7,9 +7,10 @@
             <img class="img-fluid" src="{% static 'images/pizza-python-header.webp' %}"
                alt="A python curled around and about to eat a pizza">
         </div>
-        <div id="about" class="col-md-4">
+        <div id="about" class="col-md-4 align-self-stretch">            
             {% include 'about.html' %}
-        </div>
+            <a id="about-link" href="{% url 'about-us' %}" class="btn btn-primary btn-sm w-50">More Information</a>
+         </div>
         <h1>PizzaPython</h1>
     </div>    
 </div>
