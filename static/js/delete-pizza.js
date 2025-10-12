@@ -1,6 +1,9 @@
-/*
- * delete-pizza modal to confirm potential deletion
- */
+/**
+* delete-pizza modal to confirm potential deletion
+* @requires order-pizza.js
+* uses const variables that are defined in order-pizza.js,
+* which is run from the base.html file
+*/
 const deleteButtons = document.getElementsByClassName('btn-delete');
 //  modalContent and modalWindow already defined in order-pizza.js
 

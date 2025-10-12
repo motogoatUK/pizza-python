@@ -7,8 +7,10 @@
 <h1 class="text-center">PizzaPython</h1>
 {% include "nav-small.html" %}
 <div class="card-body mb-4">
+    <!-- check user is logged in -->
     {% if user.is_authenticated %}
     <h3>Add a new Pizza, {{ user.username }}</h3>
+    <!-- display form -->
     <form id="orderForm" method="post">
         {{ order_form | crispy }}
         {% csrf_token %}
@@ -21,5 +23,6 @@
     <p>You need to be Logged in to add a pizza</p>
     {% endif %}
 </div>
+<!-- script to insert required slug field on submit  -->
 <script src="{% static 'js/add-pizza.js' %}"></script>
 {% endblock %}

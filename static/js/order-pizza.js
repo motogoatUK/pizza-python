@@ -1,4 +1,4 @@
-/*
+/**
  * order-pizza confirmation modal to send order to backend 
  */
 const orderButtons = document.getElementsByClassName('btn-order');
