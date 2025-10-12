@@ -22,7 +22,7 @@
             {% endif %}
             <!-- add my-pizza class if user matches -->
             <div class="card-body shadow{% if user == pizza.user_id %} my-pizza{%endif%}">
-                <!-- The pizza content goes inside the card-text. -->
+                <!-- The pizza content inside the card-text. -->
                 <div id="{{pizza.slug}}" class="card-text">
                     <h2>{{pizza.title}}</h2>
                     <p class="subtitle">Made by {{ pizza.user_id }}
@@ -34,21 +34,26 @@
                     </p>
                     <p>{{ pizza.base_id.name }}
                         <br>
+                        <!-- show icons for cheese and sauce -->
                         <span class="px-0">
                             {% if not pizza.cheese %}
-                            <i class="fa-solid fa-xmark red"></i>
-                            {% else %}
-                            <i class="fa-solid fa-check green"></i>
-                            {% endif %}
-                            Cheese
+                                <i class="fa-solid fa-xmark red" title="No cheese"></i>
+                                <span class="sr-only">No cheese</span>
+                                {% else %}
+                                <i class="fa-solid fa-check green" title="With cheese"></i>
+                                <span class="sr-only">With cheese</span>
+                                {% endif %}
+                                Cheese
                         </span>
                         <span class="px-2">
                             {% if not pizza.tom_sauce %}
-                            <i class="fa-solid fa-xmark red"></i>
-                            {% else %}
-                            <i class="fa-solid fa-check green"></i>
-                            {% endif %}
-                            Sauce
+                                <i class="fa-solid fa-xmark red" title="No sauce"></i>
+                                <span class="sr-only">No sauce</span>
+                                {% else %}
+                                <i class="fa-solid fa-check green" title="With sauce"></i>
+                                <span class="sr-only">With sauce</span>
+                                {% endif %}
+                                Sauce
                         </span>
                         <br>
                         <!-- loop through toppings -->
@@ -85,6 +90,7 @@
     </div>
 </section>
 {% endblock %}
+<!-- code for order and delete confirmation modal -->
 {% block modal-title %}Order Confirmation{% endblock %}
 {% block modal-content %}
 <div id="modal-content"></div>

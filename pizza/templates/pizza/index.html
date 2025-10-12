@@ -7,22 +7,23 @@
             <img class="img-fluid" src="{% static 'images/pizza-python-header.webp' %}"
                alt="A python curled around and about to eat a pizza">
         </div>
-        <div id="about" class="col-md-4 align-self-stretch">            
+        <div id="about" class="col-md-4 align-self-stretch" tabindex="0">            
             {% include 'about.html' %}
             <a id="about-link" href="{% url 'about-us' %}" class="btn btn-primary btn-sm w-50">More Information</a>
          </div>
         <h1>PizzaPython</h1>
     </div>    
 </div>
+<!-- include nav for mobiles -->
 {% include 'nav-small.html' %}
 <section class="container pt-md-3 pb-5 shadow-sm" id="pizza-list">    
     <p class="tagline p-1">All our pizzas are created with fresh
         ingredients, handcrafted dough and finest cheese.</p>
     <p>See more on the <a href="{% url 'all_pizzas' %}"
             class="btn btn-primary">All Pizzas</a> page.</p> 
-    <p class="h1">Featured Pizzas</p>
+    <h2 class="h1">Featured Pizzas</h2>
     <div class="row">
-        <!-- Show all the pizzas in card format --> 
+        <!-- Show the featured pizzas in card format --> 
         {% for pizza in object_list %}
         <div class="col-md-6 col-lg-4 mb-4 d-flex align-items-around">
             <div class="card p-2">
@@ -35,7 +36,8 @@
                     <div class="card-image-title">
                         <h2>{{ pizza.title }}</h2>
                     </div>
-                    <div class="card-image-text">
+                    <!-- make description to show over image -->
+                    <div class="card-image-text" tabindex="0">
                         <p>A classic {{ pizza.base_id }} pizza base
                             {% if pizza.topping_id.all %} topped with
                             {% for topping in pizza.topping_id.all %}
@@ -49,6 +51,7 @@
                 <div id="{{pizza.slug}}">
                     <p>{{ pizza.base_id.name }}
                         <br>
+                        <!-- show icons for cheese and sauce -->
                         <span class="ingredients w-auto">
                             <span class="px-2">
                                 {% if not pizza.cheese %}
@@ -74,14 +77,17 @@
                     </p>
                     <br>
                     <p>
+                        <!-- loop through toppings -->
                         {% for topping in pizza.topping_id.all %}
-                        <i class="fa-solid fa-plus"></i> {{topping.name}}
+                        <i class="fa-solid fa-plus"></i> {{topping.name}} 
+                        <span class="sr-only">plus</span>
                         {% endfor %}
                     </p>
                 </div>
                 <p>
                     Created by: {{ pizza.user_id }} on {{pizza.created_on}}
                 </p>
+                <!-- user needs to be logged in to order or make Pizzas -->
                 {% if user.is_authenticated %}
                 <div class="row">
                     <div class="col-12 text-center">
@@ -99,6 +105,7 @@
 </section>
 <!-- end content -->
 {% endblock %}
+<!-- code for order confirmation modal -->
 {% block modal-title %}Order Confirmation{% endblock %}
 {% block modal-content %}
 <div id="modal-content"></div>
