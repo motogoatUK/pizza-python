@@ -112,6 +112,7 @@ footer i {
 .green {
     color:var(--light-accent);
 }
+.card {border-radius: 0;}
 /* allow title and description over top of image */
 .card-image {
     position: relative;
